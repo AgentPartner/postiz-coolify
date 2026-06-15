@@ -2,10 +2,9 @@ services:
   postiz:
     image: ghcr.io/gitroomhq/postiz-app:latest
     environment:
-      - SERVICE_FQDN_postiz_5000
-      - MAIN_URL=${SERVICE_FQDN_postiz}
-      - FRONTEND_URL=${SERVICE_FQDN_postiz}
-      - NEXT_PUBLIC_BACKEND_URL=${SERVICE_FQDN_postiz}/api
+      - MAIN_URL=https://postiz.nakliyemkapida.com
+      - FRONTEND_URL=https://postiz.nakliyemkapida.com
+      - NEXT_PUBLIC_BACKEND_URL=https://postiz.nakliyemkapida.com/api
       - JWT_SECRET=${SERVICE_PASSWORD_JWTSECRET}
       - DATABASE_URL=postgresql://postgres:${SERVICE_PASSWORD_postgres}@postgres:5432/${POSTGRESQL_DATABASE:-postiz-db}
       - REDIS_URL=redis://default:${SERVICE_PASSWORD_redis}@redis:6379
@@ -84,9 +83,9 @@ services:
       - postiz_uploads:/uploads/
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.postiz-api.rule=Host(`${SERVICE_FQDN_postiz}`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.postiz-api.rule=Host(`postiz.nakliyemkapida.com`) && PathPrefix(`/api`)"
       - "traefik.http.routers.postiz-api.service=postiz-svc"
-      - "traefik.http.routers.postiz-app.rule=Host(`${SERVICE_FQDN_postiz}`)"
+      - "traefik.http.routers.postiz-app.rule=Host(`postiz.nakliyemkapida.com`)"
       - "traefik.http.routers.postiz-app.service=postiz-svc"
       - "traefik.http.services.postiz-svc.loadbalancer.server.port=5000"
     depends_on:
