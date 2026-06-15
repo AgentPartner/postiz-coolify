@@ -81,6 +81,8 @@ services:
       - STRIPE_SIGNING_KEY=${STRIPE_SIGNING_KEY}
       - STRIPE_SIGNING_KEY_CONNECT=${STRIPE_SIGNING_KEY_CONNECT}
 
+    expose:
+      - "5000"
     volumes:
       - postiz_config:/config/
       - postiz_uploads:/uploads/
