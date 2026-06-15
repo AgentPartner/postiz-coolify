@@ -87,7 +87,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
       - "traefik.http.routers.postiz-http.entryPoints=http"
-      - "traefik.http.routers.postiz-http.rule=Host(`postiz.nakliyemkapida.com`)"
+      - "traefik.http.routers.postiz-http.rule=Host(`postiz.nakliyemkapida.com`) && !PathPrefix(`/.well-known/acme-challenge/`)"
       - "traefik.http.routers.postiz-http.middlewares=redirect-to-https"
       - "traefik.http.routers.postiz-api.entryPoints=https"
       - "traefik.http.routers.postiz-api.rule=Host(`postiz.nakliyemkapida.com`) && PathPrefix(`/api`)"
