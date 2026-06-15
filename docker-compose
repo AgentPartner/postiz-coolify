@@ -85,10 +85,20 @@ services:
       - postiz_uploads:/uploads/
     labels:
       - "traefik.enable=true"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+      - "traefik.http.routers.postiz-http.entryPoints=http"
+      - "traefik.http.routers.postiz-http.rule=Host(`postiz.nakliyemkapida.com`)"
+      - "traefik.http.routers.postiz-http.middlewares=redirect-to-https"
+      - "traefik.http.routers.postiz-api.entryPoints=https"
       - "traefik.http.routers.postiz-api.rule=Host(`postiz.nakliyemkapida.com`) && PathPrefix(`/api`)"
       - "traefik.http.routers.postiz-api.service=postiz-svc"
+      - "traefik.http.routers.postiz-api.tls=true"
+      - "traefik.http.routers.postiz-api.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.postiz-app.entryPoints=https"
       - "traefik.http.routers.postiz-app.rule=Host(`postiz.nakliyemkapida.com`)"
       - "traefik.http.routers.postiz-app.service=postiz-svc"
+      - "traefik.http.routers.postiz-app.tls=true"
+      - "traefik.http.routers.postiz-app.tls.certresolver=letsencrypt"
       - "traefik.http.services.postiz-svc.loadbalancer.server.port=5000"
     depends_on:
       postgres:
