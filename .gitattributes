@@ -1,1 +1,2 @@
 docker-compose text eol=lf
+dynamicconfig/*.yaml text eol=lf
