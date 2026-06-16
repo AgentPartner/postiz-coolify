@@ -3,10 +3,9 @@ services:
     image: ghcr.io/gitroomhq/postiz-app:latest
     restart: unless-stopped
     environment:
-      - SERVICE_FQDN_postiz_5000
-      - MAIN_URL=${SERVICE_FQDN_postiz}
-      - FRONTEND_URL=${SERVICE_FQDN_postiz}
-      - NEXT_PUBLIC_BACKEND_URL=${SERVICE_FQDN_postiz}/api
+      - MAIN_URL=https://postiz.nakliyemkapida.com
+      - FRONTEND_URL=https://postiz.nakliyemkapida.com
+      - NEXT_PUBLIC_BACKEND_URL=https://postiz.nakliyemkapida.com/api
       - JWT_SECRET=${SERVICE_PASSWORD_JWTSECRET}
       - DATABASE_URL=postgresql://postgres:${SERVICE_PASSWORD_postgres}@postgres:5432/${POSTGRESQL_DATABASE:-postiz-db}
       - REDIS_URL=redis://default:${SERVICE_PASSWORD_redis}@redis:6379
