@@ -88,6 +88,9 @@ services:
       - postiz_uploads:/uploads/
     labels:
       - "traefik.enable=true"
+      - "traefik.http.routers.http-0-n8s8w8sgs0kgokggs4s0kgw4-postiz.service=postiz-svc"
+      - "traefik.http.routers.https-0-n8s8w8sgs0kgokggs4s0kgw4-postiz.service=postiz-svc"
+      - "traefik.http.services.postiz-svc.loadbalancer.server.port=5000"
     depends_on:
       postgres:
         condition: service_healthy
